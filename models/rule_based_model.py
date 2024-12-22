@@ -1,13 +1,13 @@
-# models/rule_based_model.py
 import re
 from indicnlp.tokenize.indic_tokenize import trivial_tokenize
 from collections import defaultdict
 
 class RuleBasedChecker:
     def __init__(self):
+        # Load Tamil dictionary
         self.tamil_words = self._load_tamil_dictionary()
-        
-        # Expanded grammar rules with more patterns
+
+        # Grammar rules with patterns and corresponding messages
         self.grammar_rules = {
             'subject_verb_agreement': [
                 (r'நான்.*கிறார்கள்', 'First person singular with plural verb'),
@@ -31,7 +31,13 @@ class RuleBasedChecker:
             ]
         }
 
-    def _load_tamil_dictionary(self):
+    def _load_tamil_dictionary(self) -> dict:
+        """
+        Load Tamil words from a dictionary file or use a basic predefined dictionary.
+        
+        Returns:
+            dict: A dictionary of Tamil words with their parts of speech.
+        """
         basic_dictionary = {
             'நான்': 'pronoun',
             'நீ': 'pronoun',
@@ -53,6 +59,7 @@ class RuleBasedChecker:
         }
         
         try:
+            # Load dictionary from file if available
             with open("data/tamil_dictionary.txt", "r", encoding="utf-8") as file:
                 for line in file:
                     if line.strip():
@@ -60,16 +67,33 @@ class RuleBasedChecker:
                         if len(parts) >= 2:
                             basic_dictionary[parts[0]] = parts[1]
         except FileNotFoundError:
-            pass  # Use the basic dictionary if file not found
-            
+            pass  # Use the basic dictionary if file is not found
+        
         return basic_dictionary
 
-    def split_sentences(self, text):
-        # Simple sentence splitting based on punctuation
-        sentences = re.split('[.!?।]', text)
+    def split_sentences(self, text: str) -> list:
+        """
+        Split text into sentences based on punctuation.
+        
+        Args:
+            text (str): The input text to split.
+        
+        Returns:
+            list: A list of sentences.
+        """
+        sentences = re.split(r'[.!?।]', text)
         return [s.strip() for s in sentences if s.strip()]
 
-    def check_spelling(self, text):
+    def check_spelling(self, text: str) -> list:
+        """
+        Check for spelling errors in the text.
+        
+        Args:
+            text (str): The text to check.
+        
+        Returns:
+            list: A list of spelling errors.
+        """
         errors = []
         words = trivial_tokenize(text)
         
@@ -90,7 +114,16 @@ class RuleBasedChecker:
         
         return errors
 
-    def check_grammar(self, text):
+    def check_grammar(self, text: str) -> list:
+        """
+        Check for grammatical errors in the text.
+        
+        Args:
+            text (str): The text to check.
+        
+        Returns:
+            list: A list of grammatical errors.
+        """
         errors = []
         sentences = self.split_sentences(text)
         
@@ -102,22 +135,27 @@ class RuleBasedChecker:
         
         return errors
 
-    def check_text(self, text):
+    def check_text(self, text: str) -> list:
+        """
+        Check the text for both spelling and grammar errors.
+        
+        Args:
+            text (str): The text to check.
+        
+        Returns:
+            list: A list of errors found in the text.
+        """
         try:
-            # Run spelling checks
+            # Perform spelling checks
             spelling_errors = self.check_spelling(text)
             
-            # Run grammar checks
+            # Perform grammar checks
             grammar_errors = self.check_grammar(text)
             
             # Combine all errors
             all_errors = spelling_errors + grammar_errors
             
-            # If no errors found, return empty list
-            if not all_errors:
-                return []
-                
-            return all_errors
-            
+            return all_errors if all_errors else []
+        
         except Exception as e:
             return [('error', f'Error in text analysis: {str(e)}', text)]
