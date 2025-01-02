@@ -14,7 +14,8 @@ class TamilTextAnalyzer:
             'Deep Learning': DeepLearningChecker(),
             'Statistical': StatisticalChecker()
         }
-   
+    
+    #analyze_text
     def analyze_text(self, text: str, check_spelling: bool, check_grammar: bool) -> Tuple[Dict, Dict]:
         """
         Analyze text using all available models
@@ -53,6 +54,8 @@ def create_error_visualization(results: Dict) -> None:
                 'Error Type': error_type,
                 'Count': 1
             })
+
+
    
     if error_data:
         df = pd.DataFrame(error_data)
@@ -63,6 +66,9 @@ def create_error_visualization(results: Dict) -> None:
                     title='Error Distribution by Model and Type',
                     barmode='group')
         st.plotly_chart(fig)
+
+
+
  
 def main():
     st.set_page_config(page_title="Tamil Text Checker", layout="wide")
