@@ -6,8 +6,6 @@ class RuleBasedChecker:
     def __init__(self):
         # Load Tamil dictionary
         self.tamil_words = self._load_tamil_dictionary()
-
-        # Grammar rules with patterns and corresponding messages
         self.grammar_rules = {
             'subject_verb_agreement': [
                 (r'நான்.*கிறார்கள்', 'First person singular with plural verb'),
