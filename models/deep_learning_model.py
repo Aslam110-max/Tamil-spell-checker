@@ -6,6 +6,7 @@ import re
 
 
 class DeepLearningChecker:
+    #init model
     def __init__(self):
         """Initialize the Deep Learning Checker."""
         self._initialize_model()
@@ -24,7 +25,7 @@ class DeepLearningChecker:
                 print(f"Model initialization error: {str(e)}")
                 self.tokenizer = None
                 self.model = None
-
+    #load dicttionary
     def _load_tamil_dictionary(self):
         """Load basic Tamil word dictionary."""
         self.tamil_dict = {
