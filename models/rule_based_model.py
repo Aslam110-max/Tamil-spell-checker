@@ -28,6 +28,7 @@ class RuleBasedChecker:
                 (r'\w+உடன்\w+', 'Missing space before உடன்')
             ]
         }
+    # load dictionary
 
     def _load_tamil_dictionary(self) -> dict:
         """
