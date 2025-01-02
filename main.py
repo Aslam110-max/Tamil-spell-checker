@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+import pandas as pd
 from typing import Dict, List, Tuple
 import plotly.express as px
 from models.rule_based_model import RuleBasedChecker
