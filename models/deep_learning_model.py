@@ -15,6 +15,7 @@ class DeepLearningChecker:
 
     def _initialize_model(self):
         """Initialize the tokenizer and model for MLM."""
+        """Initialize the token"""
         with warnings.catch_warnings():
             warnings.filterwarnings('ignore')
             try:
@@ -85,6 +86,7 @@ class DeepLearningChecker:
 
     def _check_patterns(self, text: str) -> List[Tuple[str, str, str]]:
         """Check text against Tamil patterns."""
+        """check text against TAmil patterns using error correction"""
         errors = []
         for error_type, patterns in self.tamil_patterns.items():
             for pattern, correction in patterns:
