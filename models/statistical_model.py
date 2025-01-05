@@ -55,13 +55,11 @@ class StatisticalChecker:
         self.grammar_model.fit(combined_features, self.grammar_labels)
 
     def _extract_features(self, text):
-        # Extract features from input text
         word_features = self.word_vectorizer.transform([text])
         char_features = self.char_vectorizer.transform([text])
         return np.hstack([word_features.toarray(), char_features.toarray()])
 
     def _analyze_patterns(self, text):
-        # Detect errors based on predefined patterns
         errors = []
         for pattern, msg in self.error_patterns['common_errors'].items():
             if re.search(pattern, text):
