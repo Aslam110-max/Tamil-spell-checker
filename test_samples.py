@@ -35,7 +35,6 @@ def run_tests(checker):
         print(f"Test Case {i}: {test['title']}")
         print(f"Input Text: {test['text']}")
         
-        # Get corrections
         spell_corrections = checker.spell_check(test['text'])
         grammar_errors = checker.check_grammar(test['text'])
         
