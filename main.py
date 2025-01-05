@@ -7,7 +7,8 @@ import plotly.express as px
 from models.rule_based_model import RuleBasedChecker
 from models.deep_learning_model import DeepLearningChecker
 from models.statistical_model import StatisticalChecker
- 
+from models.statistical_model import StatisticalChecker
+
 class TamilTextAnalyzer:
     def __init__(self):
         self.models = {
