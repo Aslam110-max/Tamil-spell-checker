@@ -28,7 +28,6 @@ class RuleBasedChecker:
                 (r'\w+உடன்\w+', 'Missing space before உடன்')
             ]
         }
-    # load dictionary
 
     def _load_tamil_dictionary(self) -> dict:
         """
@@ -71,28 +70,12 @@ class RuleBasedChecker:
         return basic_dictionary
 
     def split_sentences(self, text: str) -> list:
-        """
-        Split text into sentences based on punctuation.
-        
-        Args:
-            text (str): The input text to split.
-        
-        Returns:
-            list: A list of sentences.
-        """
+       
         sentences = re.split(r'[.!?।]', text)
         return [s.strip() for s in sentences if s.strip()]
 
     def check_spelling(self, text: str) -> list:
-        """
-        Check for spelling errors in the text.
         
-        Args:
-            text (str): The text to check.
-        
-        Returns:
-            list: A list of spelling errors.
-        """
         errors = []
         words = trivial_tokenize(text)
         

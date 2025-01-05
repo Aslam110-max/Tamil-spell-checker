@@ -8,7 +8,6 @@ import re
 class DeepLearningChecker:
     #init model
     def __init__(self):
-        """Initialize the Deep Learning Checker."""
         self._initialize_model()
         self._load_tamil_patterns()
         self._load_tamil_dictionary()
@@ -28,7 +27,6 @@ class DeepLearningChecker:
                 self.model = None
     #load dicttionary
     def _load_tamil_dictionary(self):
-        """Load basic Tamil word dictionary."""
         self.tamil_dict = {
             'நான்': 'pronoun', 'நீ': 'pronoun', 'அவன்': 'pronoun', 
             'அவள்': 'pronoun', 'அது': 'pronoun', 'நாங்கள்': 'pronoun',
