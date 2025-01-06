@@ -101,7 +101,7 @@ class RuleBasedChecker:
         Check for grammatical errors in the text.
         
         Args:
-            text (str): The text to check.
+            text (str): T  he text to check.
         
         Returns:
             list: A list of grammatical errors.
