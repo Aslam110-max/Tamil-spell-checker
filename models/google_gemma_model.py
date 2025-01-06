@@ -17,7 +17,7 @@ class GemmaChecker:
 
     def get_suggestions(self, tamil_text: str) -> str:
         """
-        Generate spelling and grammar suggestions for Tamil text.
+        Generate spelling and grammar        suggestions for Tamil text.
         
         Args:
             tamil_text (str): The Tamil text to analyze.
